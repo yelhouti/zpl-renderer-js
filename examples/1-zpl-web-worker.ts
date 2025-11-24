@@ -30,7 +30,7 @@ self.onmessage = async (ev: MessageEvent<InMsg>) => {
   const { id, zpl, wmm, hmm, dpmm } = ev.data;
   try {
     await ensureInit();
-    const b64 = await api?.zplToBase64Async(zpl, wmm, hmm, dpmm);
+    const b64 = await api?.zplToBase64Async(zpl, +wmm, +hmm, +dpmm);
     (self as DedicatedWorkerGlobalScope).postMessage({ id, ok: true, b64 } as OutMsg);
   } catch (e: unknown) {
     (self as DedicatedWorkerGlobalScope).postMessage({
